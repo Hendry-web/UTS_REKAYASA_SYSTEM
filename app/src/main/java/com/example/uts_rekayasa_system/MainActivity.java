@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner6;
 
     ArrayList<String> sekolahList = new ArrayList<>();
+    ArrayList<String> sekolahIdList = new ArrayList<>();
     ArrayList<String> paketList = new ArrayList<>();
     ArrayAdapter<String> sekolahAdapter;
     RequestQueue requestQueue;
@@ -89,7 +90,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String sekolah = jsonObject.optString("sekolah");
+                        String sekolahId = jsonObject.optString("id");
                         sekolahList.add(sekolah);
+                        sekolahIdList.add(sekolahId);
                         sekolahAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, sekolahList);
                         sekolahAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner6.setAdapter(sekolahAdapter);
@@ -140,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String tempat = edittempat.getText().toString().trim();
         final String alamat = editalamat.getText().toString().trim();
         final String wali = editwali.getText().toString().trim();
-        final String sekolah = spinner6.getSelectedItem().toString().trim();
+        final String sekolah = sekolahIdList.get((int) spinner6.getSelectedItemId()).trim();
         //final String desg = editTextDesg.getText().trim();
         final String telp = edittelp.getText().toString().trim();
         //final String sal = editTextSal.getText().toString().trim();
