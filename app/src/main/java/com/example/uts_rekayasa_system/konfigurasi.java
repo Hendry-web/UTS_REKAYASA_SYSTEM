@@ -23,6 +23,7 @@ public class konfigurasi {
 
     //JSON Tags
     public static final String TAG_JSON_ARRAY="result";
+    public static final String TAG_ID = "id";
     public static final String TAG_PAKET = "paket";
     public static final String TAG_INDUK = "induk";
     public static final String TAG_NAMA = "nama";

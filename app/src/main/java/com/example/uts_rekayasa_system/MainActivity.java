@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,7 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,  DatePickerDialog.OnDateSetListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,  DatePickerDialog.OnDateSetListener {
     private EditText editnoinduk;
     private EditText editnama;
     private EditText edittempat;
@@ -49,13 +50,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonAdd;
     private Button buttonView;
 
-    Spinner spinner6;
     Spinner spinner3;
+    Spinner spinner6;
 
     ArrayList<String> sekolahList = new ArrayList<>();
     ArrayList<String> sekolahIdList = new ArrayList<>();
+
+
     ArrayList<String> paketList = new ArrayList<>();
     ArrayList<String> paketIdList = new ArrayList<>();
+
     ArrayAdapter<String> sekolahAdapter;
     ArrayAdapter<String> paketAdapter;
     RequestQueue requestQueue;
@@ -79,11 +83,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonView = (Button) findViewById(R.id.buttonView);
 
         //Setting listeners to button
-        buttonAdd.setOnClickListener(this);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editnoinduk.getText().toString().length()==0)
+                {
+                    editnoinduk.setError("No.induk Wajib DiMasukkan");
+                }
+                else if (editnama.getText().toString().length()==0)
+                {
+                    editnama.setError("Nama Wajib DIMasukkan");
+                }else {
+                    Toast.makeText(MainActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         buttonView.setOnClickListener(this);
 
         requestQueue = Volley.newRequestQueue(this);
         spinner6 = findViewById(R.id.spinner6);
+        spinner3 = findViewById(R.id.spinner3);
 
         String url = konfigurasi.URL_GET_SEKOLAH;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
@@ -95,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String sekolah = jsonObject.optString("sekolah");
                         String sekolahId = jsonObject.optString("id");
+
                         sekolahList.add(sekolah);
                         sekolahIdList.add(sekolahId);
                         sekolahAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, sekolahList);
@@ -111,10 +131,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
         requestQueue.add(jsonObjectRequest);
-        
         String urlPaket = konfigurasi.URL_GET_PAKET;
-        JsonObjectRequest jsonObjectRequestPaket = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequestPaket = new JsonObjectRequest(Request.Method.POST, urlPaket, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -139,10 +159,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-        requestQueuePaket.add(jsonObjectRequestPaket);
+        requestQueue.add(jsonObjectRequestPaket);
 
-
-        Button button2 =(Button) findViewById(R.id.button2);
+        Button button2 = (Button) findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,9 +183,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView textView11 = (TextView) findViewById(R.id.textView11);
         textView11.setText(CurrentDateString);
     }
-
-
-
     //Dibawah ini merupakan perintah untuk Menambahkan Pegawai (CREATE)
     private void addSiswa() {
 
@@ -176,8 +192,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String alamat = editalamat.getText().toString().trim();
         final String wali = editwali.getText().toString().trim();
         final String sekolah = sekolahIdList.get((int) spinner6.getSelectedItemId()).trim();
-        final String paket = paketIdList.get((int) spinner3.getSelectedItemId()).trim();
+        //final String desg = editTextDesg.getText().trim();
         final String telp = edittelp.getText().toString().trim();
+        final String paket = paketIdList.get((int) spinner3.getSelectedItemId()).trim();
+
+        //final String sal = editTextSal.getText().toString().trim();
 
 
         class AddSiswa extends AsyncTask<Void, Void, String> {
