@@ -207,6 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put(konfigurasi.KEY_EMP_WALI, wali);
                 params.put(konfigurasi.KEY_EMP_TELP, telp);
                 params.put(konfigurasi.KEY_EMP_SEKOLAH, sekolah);
+                params.put(konfigurasi.KEY_EMP_PAKET, paket);
 
 
                 RequestHandler rh = new RequestHandler();
