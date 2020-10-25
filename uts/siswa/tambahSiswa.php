@@ -20,11 +20,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 	//Eksekusi Query database
 	if(mysqli_query($con,$sql)){
-		echo 'Berhasil Menambahkan Pegawai';
+		echo 'Berhasil menambahkan siswa.';
 	}else{
-		echo 'Gagal Menambahkan Pegawai';
+		echo 'Gagal menambahkan siswa.';
 	}
-
+	
+	//Menutup koneksi database
 	mysqli_close($con);
 }
 ?>
