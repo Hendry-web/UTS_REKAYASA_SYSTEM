@@ -88,13 +88,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 if(editnoinduk.getText().toString().length()==0)
                 {
-                    editnoinduk.setError("No.induk Wajib DiMasukkan");
+                    editnoinduk.setError("No. induk wajib dimasukkan.");
                 }
                 else if (editnama.getText().toString().length()==0)
                 {
-                    editnama.setError("Nama Wajib DIMasukkan");
-                }else {
-                    Toast.makeText(MainActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                    editnama.setError("Nama wajib dimasukkan.");
+                }
+                else if (editnoinduk.getText().toString().length()==0 && editnama.getText().toString().length()==0)
+                {
+                    editnama.setError("No. induk dan nama wajib dimasukkan.");
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Berhasil.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
