@@ -50,12 +50,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonView;
 
     Spinner spinner6;
+    Spinner spinner3;
 
     ArrayList<String> sekolahList = new ArrayList<>();
     ArrayList<String> sekolahIdList = new ArrayList<>();
     ArrayList<String> paketList = new ArrayList<>();
+    ArrayList<String> paketIdList = new ArrayList<>();
     ArrayAdapter<String> sekolahAdapter;
+    ArrayAdapter<String> paketAdapter;
     RequestQueue requestQueue;
+    RequestQueue requestQueuePaket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +112,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         requestQueue.add(jsonObjectRequest);
+        
+        String urlPaket = konfigurasi.URL_GET_PAKET;
+        JsonObjectRequest jsonObjectRequestPaket = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("result");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String paket = jsonObject.optString("paket");
+                        String paketId = jsonObject.optString("id");
+                        paketList.add(paket);
+                        paketIdList.add(paketId);
+                        paketAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, paketList);
+                        paketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner3.setAdapter(paketAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueuePaket.add(jsonObjectRequestPaket);
 
 
         Button button2 =(Button) findViewById(R.id.button2);
@@ -144,9 +176,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String alamat = editalamat.getText().toString().trim();
         final String wali = editwali.getText().toString().trim();
         final String sekolah = sekolahIdList.get((int) spinner6.getSelectedItemId()).trim();
-        //final String desg = editTextDesg.getText().trim();
+        final String paket = paketIdList.get((int) spinner3.getSelectedItemId()).trim();
         final String telp = edittelp.getText().toString().trim();
-        //final String sal = editTextSal.getText().toString().trim();
 
 
         class AddSiswa extends AsyncTask<Void, Void, String> {
