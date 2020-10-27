@@ -1,0 +1,41 @@
+Database Analysis
+*Tabel,
+- siswa
+- paket
+- sekolah_asal
+
+*Field,
+- siswa 
+a. id (primary key)
+b. paket_id (foreign key)
+c. no_induk (integer, not null)
+d. nama (varchar, 255, not null)
+e. jenis kelamin (enum [Laki-laki, Perempuan])
+f. tempat_lahir (varchar, 255)
+g. tanggal_lahir (date)
+h. sekolah_asal_id (foreign key)
+i. alamat (text)
+j. nama_wali (varchar, 255)
+k. telp (varchar, 255)
+l. foto_name (varchar, 255)
+m. foto_link (varchar, 255)
+
+- paket
+a. id (primary key)
+b. paket (varchar, 255)
+
+- sekolah_asal
+a. id (primary key)
+b. sekolah (varchar, 255)
+
+*Primary key,
+- siswa = id
+- paket = id
+- sekolah_asal = id
+
+*Foreign key,
+- siswa = siswa_paket_id_foreign dan siswa_sekolah_asal_id_foreign
+
+*Relationship,
+- paket_id pada tabel siswa relation ke id pada tabel paket
+- sekolah_asal_id pada tabel siswa relation ke id pada tabel sekolah_asal
