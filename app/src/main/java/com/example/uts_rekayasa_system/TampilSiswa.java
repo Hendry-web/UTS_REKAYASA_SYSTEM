@@ -441,7 +441,7 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
 
     private void confirmDeleteSiswa(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Apakah Kamu Yakin Ingin Menghapus Data Pedobear ini?");
+        alertDialogBuilder.setMessage("Apakah Anda yakin ingin menghapus data siswa ini?");
 
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
