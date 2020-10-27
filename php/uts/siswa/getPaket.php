@@ -1,4 +1,3 @@
-  
 <?php
 function getPaket(){
     require_once('koneksi.php');
