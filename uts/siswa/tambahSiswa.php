@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 	else{     
         echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
-    }
+    	}
 
 	mysqli_close($con);
 }
