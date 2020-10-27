@@ -1,0 +1,9 @@
+Function Analysis,
+- menambahkan dan menyunting data siswa, yaitu paket, no.induk, nama, jenis kelamin, tempat lahir, tanggal lahir, sekolah asal, alamat, nama wali, no telepon, dan foto.
+- menampilkan data siswa, di mana hanya no.induk dan nama yang ditampilkan, sedangkan untuk data lengkapnya harus dipilih salah satu siswanya terlebih.
+- menghapus data siswa.
+- pemberian validasi pada no.induk dan nama, di mana keduanya wajib diisi.
+- menambahkan data sekolah.
+- menampilkan data paket dan dan sekolah dari database pada form input serta edit untuk data siswa menggunakan spinner.
+- tanggal diisi dengan menggunakan DatePicker, sehingga tidak perlu ketik manual.
+- jenis kelamin dipilih dengan menggunakan spinner.
