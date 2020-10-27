@@ -26,18 +26,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $query = "INSERT INTO siswa (paket_id, no_induk, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, sekolah_asal_id, alamat, nama_wali, telp, foto) VALUES ('$paket', '$induk', '$nama', '$jenis', '$tempat', '$tanggal', '$sekolah', '$alamat', '$wali', '$telp', '$nama_foto_baru')";
             $result = mysqli_query($con, $query);
 
-            if($result){
-                echo 'Berhasil menambahkan siswa.';
-			} 
+		if($result){
+                	echo 'Berhasil menambahkan siswa.';
+		} 
 
-			else{
-				echo 'Gagal menambahkan siswa.';
-			}
+		else{
+			echo 'Gagal menambahkan siswa.';
 		}
 	}
-
+		
 	else{     
-        echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
+        	echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
     	}
 
 	mysqli_close($con);
