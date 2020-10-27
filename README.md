@@ -1,6 +1,6 @@
 # UTS_REKAYASA_SYSTEM - Kelompok Ungu
 
-File yang terdapat pada folder **php**, adalah  tidak perlu dihubungkan ke localhost, karena untuk koneksi database pada aplikasi android ini sudah terhubung ke hosting online.
+File yang terdapat pada folder **php**, adalah file database dan skrip php yang digunakan pada projek ini dan tidak perlu dihubungkan ke localhost, karena untuk koneksi database pada aplikasi android ini sudah terhubung ke hosting online.
 
 Untuk file yang terdapat dalam folder **analysis**, adalah file analisa database dan function yang diminta sesuai soal.
 
