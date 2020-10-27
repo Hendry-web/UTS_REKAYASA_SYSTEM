@@ -1,7 +1,8 @@
 package com.example.uts_rekayasa_system;
 
 public class konfigurasi {
-    public static final String URL_ADD=     "http://192.168.100.2:8080/uts/siswa/tambahSiswa.php";
+    public static final String URL_ADD = "http://192.168.100.2:8080/uts/siswa/tambahSiswa.php";
+    public static final String URL_ADD_SEKOLAH = "http://192.168.100.2:8080/uts/siswa/tambahSekolah.php";
     public static final String URL_GET_ALL = "http://192.168.100.2:8080/uts/siswa/tampilSemuaSiswa.php";
     public static final String URL_GET_EMP = "http://192.168.100.2:8080/uts/siswa/tampilSiswa.php?id=";
     public static final String URL_UPDATE_EMP = "http://192.168.100.2:8080/uts/siswa/updateSiswa.php";
@@ -20,6 +21,7 @@ public class konfigurasi {
     public static final String KEY_EMP_ALAMAT = "alamat";
     public static final String KEY_EMP_WALI = "wali";
     public static final String KEY_EMP_TELP = "telp";
+    public static final String KEY_EMP_FOTO_PATH = "foto_path";
 
     //JSON Tags
     public static final String TAG_JSON_ARRAY="result";
@@ -34,6 +36,7 @@ public class konfigurasi {
     public static final String TAG_ALAMAT = "alamat";
     public static final String TAG_WALI = "wali";
     public static final String TAG_TELP = "telp";
+    public static final String TAG_FOTO = "foto";
 
     //ID siswa
     //sis itu singkatan dari siswa

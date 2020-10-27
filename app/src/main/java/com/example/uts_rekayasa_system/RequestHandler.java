@@ -20,8 +20,7 @@ public class RequestHandler {
     //Metode ini mengambil 2 Argumen
     //Metode Pertama adalah URL dari Skrip yang digunakan untuk mengirimkan permintaan
     //Yang lainnya adalah HashMap dengan nilai pasangan nama yang berisi data yang akan dikirim dengan permintaan
-    public String sendPostRequest(String requestURL,
-                                  HashMap<String, String> postDataParams) {
+    public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         //Membuat URL
         URL url;
 
@@ -46,8 +45,7 @@ public class RequestHandler {
 
             //Menulis Parameter Untuk Permintaan
             //Kita menggunakan metode getPostDataString yang didefinisikan di bawah ini
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(os, "UTF-8"));
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
             writer.write(getPostDataString(postDataParams));
 
             writer.flush();
@@ -56,7 +54,6 @@ public class RequestHandler {
             int responseCode = conn.getResponseCode();
 
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 sb = new StringBuilder();
                 String response;
