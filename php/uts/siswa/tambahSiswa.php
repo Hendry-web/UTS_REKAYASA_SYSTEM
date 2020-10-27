@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     $ImagePath = "images/$DefaultId.png";
-    $ServerURL = "http://hexadoge.fun/uts/siswa/$ImagePath";
+    $ServerURL = "https://hexadoge.fun/uts/siswa/$ImagePath";
 
     $query = "INSERT INTO siswa (paket_id, no_induk, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, sekolah_asal_id, alamat, nama_wali, telp, foto_name, foto_link) VALUES ('$paket', '$induk', '$nama', '$jenis', '$tempat', '$tanggal', '$sekolah', '$alamat', '$wali', '$telp', '$DefaultId', '$ServerURL')";
     $result = mysqli_query($con, $query);
