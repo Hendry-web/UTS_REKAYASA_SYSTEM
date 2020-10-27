@@ -1,14 +1,13 @@
 <?php
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    require_once('koneksi.php');
 	$sekolah = $_POST['sekolah'];
 	$sql = "INSERT INTO sekolah_asal (sekolah) VALUES ('$sekolah')";
-	require_once('koneksi.php');
-	
 
 	if(mysqli_query($con,$sql)){
-		echo 'Berhasil Menambahkan Pegawai';
+		echo 'Berhasil menambahkan sekolah.';
 	}else{
-		echo 'Gagal Menambahkan Pegawai';
+		echo 'Gagal menambahkan sekolah.';
 	}
 	
 	mysqli_close($con);

@@ -1,7 +1,6 @@
 <?php 
-$id = $_GET['id'];
-
 require_once('koneksi.php');
+$id = $_GET['id'];
 $sql = "SELECT * FROM siswa WHERE id = $id";
 $sqlPaket = "SELECT paket.paket FROM siswa INNER JOIN paket ON siswa.paket_id = paket.id WHERE siswa.id = $id";
 $sqlSekolah = "SELECT sekolah_asal.sekolah FROM siswa INNER JOIN sekolah_asal ON siswa.sekolah_asal_id = sekolah_asal.id WHERE siswa.id = $id";

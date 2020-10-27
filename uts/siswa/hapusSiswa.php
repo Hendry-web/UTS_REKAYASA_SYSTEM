@@ -1,7 +1,7 @@
 <?php 
-$id = $_GET['id'];
 require_once('koneksi.php');
-$sql = "DELETE FROM siswa WHERE id = $id;";
+$id = $_GET['id'];
+$sql = "DELETE FROM siswa WHERE id = $id";
  
 if(mysqli_query($con, $sql)){
     echo 'Berhasil menghapus siswa.';

@@ -45,7 +45,6 @@ import org.json.JSONObject;
 
 public class TambahSekolah extends AppCompatActivity implements View.OnClickListener {
     private EditText editsekolah;
-
     private Button button1;
 
     @Override
@@ -58,7 +57,6 @@ public class TambahSekolah extends AppCompatActivity implements View.OnClickList
         button1.setOnClickListener(this);
     }
 
-    //Dibawah ini merupakan perintah untuk menambahkan pedobear (CREATE)
     private void addSekolah() {
         final String sekolah = editsekolah.getText().toString().trim();
 

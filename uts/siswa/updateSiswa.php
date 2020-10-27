@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
 
     $ImagePath = "images/$DefaultId.png";
-    $ServerURL = "http://192.168.100.2:8080/uts/siswa/$ImagePath";
+    $ServerURL = "http://hexadoge.fun/uts/siswa/$ImagePath";
 
     $query = "UPDATE siswa SET paket_id = '$paket', no_induk = '$induk', nama = '$nama', jenis_kelamin = '$jenis', tempat_lahir = '$tempat', tanggal_lahir = '$tanggal', sekolah_asal_id = '$sekolah', alamat = '$alamat', nama_wali = '$wali', telp = '$telp', foto_name = '$DefaultId', foto_link = '$ServerURL' WHERE id = '$id'";
     $result = mysqli_query($con, $query);

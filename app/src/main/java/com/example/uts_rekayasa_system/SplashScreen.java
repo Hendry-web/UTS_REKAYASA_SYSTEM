@@ -8,7 +8,6 @@ import android.view.View;
 
 import gr.net.maroulis.library.EasySplashScreen;
 public class SplashScreen extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +30,5 @@ public class SplashScreen extends AppCompatActivity {
 
         View easySplashScreen = config.create();
         setContentView(easySplashScreen);
-
     }
 }

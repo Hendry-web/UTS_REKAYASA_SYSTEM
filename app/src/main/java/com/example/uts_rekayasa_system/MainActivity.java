@@ -79,17 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Spinner spinner3;
     Spinner spinner6;
     String radioButton = "Laki-laki";
-
     ArrayList<String> sekolahList = new ArrayList<>();
     ArrayList<String> sekolahIdList = new ArrayList<>();
-
     ArrayList<String> paketList = new ArrayList<>();
     ArrayList<String> paketIdList = new ArrayList<>();
-
     ArrayAdapter<String> sekolahAdapter;
     ArrayAdapter<String> paketAdapter;
     RequestQueue requestQueue;
-
     Bitmap bitmap;
     Button SelectImageGallery;
     ImageView imageView;
@@ -99,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Inisialisasi dari View
         editnama = (EditText) findViewById(R.id.editnama);
         editnoinduk = (EditText) findViewById(R.id.editnoinduk);
         edittempat = (EditText) findViewById(R.id.edittempat);
@@ -123,20 +118,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //Setting listeners to button
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editnoinduk.getText().toString().length() == 0 && editnama.getText().toString().length() == 0) {
                     editnoinduk.setError("No. induk dan nama wajib dimasukkan.");
                     editnama.setError("No. induk dan nama wajib dimasukkan.");
-                } else if (editnoinduk.getText().toString().length() == 0) {
+                } 
+                
+                else if (editnoinduk.getText().toString().length() == 0) {
                     editnoinduk.setError("No. induk wajib dimasukkan.");
-                } else if (editnama.getText().toString().length() == 0) {
+                } 
+                
+                else if (editnama.getText().toString().length() == 0) {
                     editnama.setError("Nama wajib dimasukkan.");
-                } else if(imageView.getDrawable() == null){
+                }
+
+                else if (imageView.getDrawable() == null) {
                     Toast.makeText(MainActivity.this, "Please insert image.", Toast.LENGTH_SHORT).show();
-                } else{
+                } 
+
+                else {
                     addSiswa();
                 }
             }
@@ -166,7 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         sekolahAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner6.setAdapter(sekolahAdapter);
                     }
-                } catch (JSONException e) {
+                } 
+                
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -194,7 +198,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         paketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner3.setAdapter(paketAdapter);
                     }
-                } catch (JSONException e) {
+                } 
+                
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -225,7 +231,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
+            } 
+            
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -266,7 +274,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //Dibawah ini merupakan perintah untuk menambahkan pedobear (CREATE)
     private void addSiswa() {
         final String induk = editnoinduk.getText().toString().trim();
         final String nama = editnama.getText().toString().trim();

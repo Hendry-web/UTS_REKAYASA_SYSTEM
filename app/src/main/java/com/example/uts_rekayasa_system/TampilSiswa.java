@@ -67,33 +67,22 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
     private EditText editalamat;
     private EditText editwali;
     private EditText edittelp;
-
     private TextView texttanggal;
-
     private Button buttonUpdate;
     private Button buttonDelete;
-
     private String id;
 
     RadioGroup radioGroup;
-
     Spinner spinner3;
     Spinner spinner6;
-
     String radioButton;
-
     ArrayList<String> sekolahList = new ArrayList<>();
     ArrayList<String> sekolahIdList = new ArrayList<>();
-
     ArrayList<String> paketList = new ArrayList<>();
     ArrayList<String> paketIdList = new ArrayList<>();
-
     ArrayAdapter<String> sekolahAdapter;
     ArrayAdapter<String> paketAdapter;
-    ArrayAdapter<String> paketAdapter2;
-
     RequestQueue requestQueue;
-
     Bitmap bitmap;
     Button SelectImageGallery;
     ImageView imageView;
@@ -104,10 +93,8 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_tampil_siswa);
 
         Intent intent = getIntent();
-
         id = intent.getStringExtra(konfigurasi.SIS_ID);
 
-        //Inisialisasi dari View
         editTextId = (EditText) findViewById(R.id.editTextId);
         editnama = (EditText) findViewById(R.id.editnama);
         editnoinduk = (EditText) findViewById(R.id.editnoinduk);
@@ -132,20 +119,27 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-        //Setting listeners to button
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editnoinduk.getText().toString().length() == 0 && editnama.getText().toString().length() == 0) {
                     editnoinduk.setError("No. induk dan nama wajib dimasukkan.");
                     editnama.setError("No. induk dan nama wajib dimasukkan.");
-                } else if (editnoinduk.getText().toString().length() == 0) {
+                } 
+                
+                else if (editnoinduk.getText().toString().length() == 0) {
                     editnoinduk.setError("No. induk wajib dimasukkan.");
-                } else if (editnama.getText().toString().length() == 0) {
+                } 
+                
+                else if (editnama.getText().toString().length() == 0) {
                     editnama.setError("Nama wajib dimasukkan.");
-                } else if(imageView.getDrawable() == null){
+                } 
+                
+                else if (imageView.getDrawable() == null) {
                     Toast.makeText(TampilSiswa.this, "Please insert image.", Toast.LENGTH_SHORT).show();
-                } else {
+                } 
+                
+                else {
                     updateSiswa();
                 }
             }
@@ -178,7 +172,9 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
                         sekolahAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner6.setAdapter(sekolahAdapter);
                     }
-                } catch (JSONException e) {
+                } 
+                
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -206,7 +202,9 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
                         paketAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner3.setAdapter(paketAdapter);
                     }
-                } catch (JSONException e) {
+                } 
+                
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -237,15 +235,17 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
+            } 
+            
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
         else {
             Toast.makeText(TampilSiswa.this, "No image uploaded.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -304,6 +304,7 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
         GetSiswa ge = new GetSiswa();
         ge.execute();
     }
+
     private void showSiswa(String json){
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -345,12 +346,13 @@ public class TampilSiswa extends AppCompatActivity implements View.OnClickListen
             radioButton = jenis;
             texttanggal.setText(tanggal);
 
-        } catch (JSONException e) {
+        } 
+        
+        catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    //Dibawah ini merupakan perintah untuk mengupdate pedobear (CREATE)
     private void updateSiswa() {
         final String id = editTextId.getText().toString().trim();
         final String induk = editnoinduk.getText().toString().trim();

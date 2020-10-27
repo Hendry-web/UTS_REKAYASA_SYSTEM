@@ -52,7 +52,9 @@ public class TampilSemuaSiswa extends AppCompatActivity implements ListView.OnIt
                 list.add(siswa);
             }
 
-        } catch (JSONException e) {
+        } 
+        
+        catch (JSONException e) {
             e.printStackTrace();
         }
 
