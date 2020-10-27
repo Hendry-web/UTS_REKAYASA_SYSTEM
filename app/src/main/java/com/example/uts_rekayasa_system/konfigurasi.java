@@ -1,14 +1,14 @@
 package com.example.uts_rekayasa_system;
 
 public class konfigurasi {
-    public static final String URL_ADD = "http://hexadoge.fun/uts/siswa/uts/siswa/tambahSiswa.php";
-    public static final String URL_ADD_SEKOLAH = "http://hexadoge.fun/uts/siswa/uts/siswa/tambahSekolah.php";
-    public static final String URL_GET_ALL = "http://hexadoge.fun/uts/siswa/uts/siswa/tampilSemuaSiswa.php";
-    public static final String URL_GET_EMP = "http://hexadoge.fun/uts/siswa/uts/siswa/tampilSiswa.php?id=";
-    public static final String URL_UPDATE_EMP = "http://hexadoge.fun/uts/siswa/uts/siswa/updateSiswa.php";
-    public static final String URL_DELETE_EMP = "http://hexadoge.fun/uts/siswa/uts/siswa/hapusSiswa.php?id=";
-    public static final String URL_GET_SEKOLAH = "http://hexadoge.fun/uts/siswa/uts/siswa/getSekolah.php";
-    public static final String URL_GET_PAKET = "http://hexadoge.fun/uts/siswa/uts/siswa/getPaket.php";
+    public static final String URL_ADD = "https://hexadoge.fun/uts/siswa/tambahSiswa.php";
+    public static final String URL_ADD_SEKOLAH = "https://hexadoge.fun/uts/siswa/tambahSekolah.php";
+    public static final String URL_GET_ALL = "https://hexadoge.fun/uts/siswa/tampilSemuaSiswa.php";
+    public static final String URL_GET_EMP = "https://hexadoge.fun/uts/siswa/tampilSiswa.php?id=";
+    public static final String URL_UPDATE_EMP = "https://hexadoge.fun/uts/siswa/updateSiswa.php";
+    public static final String URL_DELETE_EMP = "https://hexadoge.fun/uts/siswa/hapusSiswa.php?id=";
+    public static final String URL_GET_SEKOLAH = "https://hexadoge.fun/uts/siswa/getSekolah.php";
+    public static final String URL_GET_PAKET = "https://hexadoge.fun/uts/siswa/getPaket.php";
 
     public static final String KEY_EMP_ID = "id";
     public static final String KEY_EMP_PAKET = "paket";
