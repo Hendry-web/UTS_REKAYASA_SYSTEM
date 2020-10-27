@@ -6,7 +6,8 @@ $result = array();
 
 while($row = mysqli_fetch_array($r)){
     array_push($result, array(
-        "id"=> $row['id'],
+        "id" => $row['id'],
+        "induk" => $row['no_induk'],
         "nama" => $row['nama'],
     ));
 }

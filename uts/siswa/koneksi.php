@@ -1,8 +1,8 @@
 <?php
-define('HOST','localhost');
-define('USER','root');
-define('PASS','');
-define('DB','uts');
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASS', '');
+define('DB', 'uts');
 
 $con = mysqli_connect(HOST, USER, PASS, DB) or die('Unable to connect.');
 ?>
