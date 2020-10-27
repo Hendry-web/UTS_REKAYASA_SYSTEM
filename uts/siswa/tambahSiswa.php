@@ -11,21 +11,35 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$alamat = $_POST['alamat'];
 	$wali = $_POST['wali'];
 	$telp = $_POST['telp'];
+	$foto = $_FILES['foto']['name'];
 
-	//Pembuatan Syntax SQL
-	$sql = "INSERT INTO siswa (paket_id,no_induk,nama,jenis_kelamin,tempat_lahir,tanggal_lahir,sekolah_asal_id,alamat,nama_wali,telp) VALUES ('$paket','$induk','$nama','$jenis','$tempat','$tanggal','$sekolah','$alamat','$wali','$telp')";
+	if($foto != ""){
+        $ekstensi_diperbolehkan = array('png','jpg');
+        $x = explode('.', $foto);
+        $ekstensi = strtolower(end($x));
+        $file_tmp = $_FILES['foto']['tmp_name'];   
+        $angka_acak = rand(1,999);
+        $nama_foto_baru = $angka_acak.'-'.$foto;
 
-	//Import File Koneksi database
-	require_once('koneksi.php');
+        if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){     
+            move_uploaded_file($file_tmp, 'foto/'.$nama_foto_baru);
+            $query = "INSERT INTO siswa (paket_id, no_induk, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, sekolah_asal_id, alamat, nama_wali, telp, foto) VALUES ('$paket', '$induk', '$nama', '$jenis', '$tempat', '$tanggal', '$sekolah', '$alamat', '$wali', '$telp', '$nama_foto_baru')";
+            $result = mysqli_query($con, $query);
 
-	//Eksekusi Query database
-	if(mysqli_query($con,$sql)){
-		echo 'Berhasil menambahkan siswa.';
-	}else{
-		echo 'Gagal menambahkan siswa.';
+            if($result){
+                echo 'Berhasil menambahkan siswa.';
+			} 
+
+			else{
+				echo 'Gagal menambahkan siswa.';
+			}
+		}
 	}
-	
-	//Menutup koneksi database
+
+	else{     
+        echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
+    }
+
 	mysqli_close($con);
 }
 ?>
