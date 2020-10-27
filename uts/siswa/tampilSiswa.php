@@ -27,7 +27,7 @@ array_push($result, array(
 	"alamat" => $row['alamat'],
 	"wali" => $row['nama_wali'],
 	"telp" => $row['telp'],
-	"foto" => $row['foto'],
+	"foto" => $row['foto_link'],
 ));
 
 echo json_encode(array('result' => $result));

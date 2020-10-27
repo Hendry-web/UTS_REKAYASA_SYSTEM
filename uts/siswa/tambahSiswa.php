@@ -10,34 +10,29 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	$alamat = $_POST['alamat'];
 	$wali = $_POST['wali'];
 	$telp = $_POST['telp'];
-	$foto = $_FILES['foto']['name'];
+	$ImageData = $_POST['foto_path'];
 
-	if($foto != ""){
-		$ekstensi_diperbolehkan = array('png', 'jpg');
-		$x = explode('.', $foto);
-		$ekstensi = strtolower(end($x));
-		$file_tmp = $_FILES['foto']['tmp_name'];   
-		$angka_acak = rand(1, 999);
-		$nama_foto_baru = $angka_acak.'-'.$foto;
+    include('koneksi.php');
+    $GetOldIdSQL ="SELECT id FROM siswa ORDER BY id ASC";
+    $Query = mysqli_query($con, $GetOldIdSQL);
 
-		if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){   
-            move_uploaded_file($file_tmp, 'foto/'.$nama_foto_baru);
-            require_once('koneksi.php');
-			$query = "INSERT INTO siswa (paket_id, no_induk, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, sekolah_asal_id, alamat, nama_wali, telp, foto) VALUES ('$paket', '$induk', '$nama', '$jenis', '$tempat', '$tanggal', '$sekolah', '$alamat', '$wali', '$telp', '$nama_foto_baru')";
-			$result = mysqli_query($con, $query);
+    while($row = mysqli_fetch_array($Query)){
+        $DefaultId = $row['id'];
+    }
 
-			if($result){
-				echo 'Berhasil menambahkan siswa.';
-			} 
+    $ImagePath = "images/$DefaultId.png";
+    $ServerURL = "http://192.168.100.2:8080/uts/siswa/$ImagePath";
 
-			else{
-				echo 'Gagal menambahkan siswa.';
-			}
-		}
-	}
-		
-	else{     
-        echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
+    $query = "INSERT INTO siswa (paket_id, no_induk, nama, jenis_kelamin, tempat_lahir, tanggal_lahir, sekolah_asal_id, alamat, nama_wali, telp, foto_name, foto_link) VALUES ('$paket', '$induk', '$nama', '$jenis', '$tempat', '$tanggal', '$sekolah', '$alamat', '$wali', '$telp', '$DefaultId', '$ServerURL')";
+    $result = mysqli_query($con, $query);
+
+    if($result){
+        file_put_contents($ImagePath,base64_decode($ImageData));
+        echo 'Berhasil menambahkan siswa.';
+    } 
+
+    else{
+        echo 'Gagal menambahkan siswa.';
     }
 
 	mysqli_close($con);

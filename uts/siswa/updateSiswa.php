@@ -1,3 +1,4 @@
+  
 <?php 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $id = $_POST['id'];
@@ -11,34 +12,29 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $alamat = $_POST['alamat'];
     $wali = $_POST['wali'];
     $telp = $_POST['telp'];
-    $foto = $_FILES['foto']['name'];
-    
-    if($foto != ""){
-		$ekstensi_diperbolehkan = array('png', 'jpg');
-		$x = explode('.', $foto);
-		$ekstensi = strtolower(end($x));
-		$file_tmp = $_FILES['foto']['tmp_name'];   
-		$angka_acak = rand(1, 999);
-		$nama_foto_baru = $angka_acak.'-'.$foto;
+    $ImageData = $_POST['foto_path'];
 
-		if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){   
-            move_uploaded_file($file_tmp, 'foto/'.$nama_foto_baru);
-            require_once('koneksi.php');
-			$query = "UPDATE siswa SET paket_id = '$paket', no_induk = '$induk', nama = '$nama', jenis_kelamin = '$jenis', tempat_lahir = '$tempat', tanggal_lahir = '$tanggal', sekolah_asal_id = '$sekolah', alamat = '$alamat', nama_wali = '$wali', telp = '$telp', foto = '$nama_foto_baru' WHERE id = '$id'";
-			$result = mysqli_query($con, $query);
+    include('koneksi.php');
+    $GetOldIdSQL ="SELECT id FROM siswa ORDER BY id ASC";
+    $Query = mysqli_query($con, $GetOldIdSQL);
 
-			if($result){
-				echo 'Berhasil mengupdate siswa.';
-			} 
+    while($row = mysqli_fetch_array($Query)){
+        $DefaultId = $row['id'];
+    }
 
-			else{
-				echo 'Gagal mengupdate siswa.';
-			}
-		}
-	}
-		
-	else{     
-        echo 'Ekstensi foto yang diperbolehkan hanyalah .jpg atau .png!';
+    $ImagePath = "images/$DefaultId.png";
+    $ServerURL = "http://192.168.100.2:8080/uts/siswa/$ImagePath";
+
+    $query = "UPDATE siswa SET paket_id = '$paket', no_induk = '$induk', nama = '$nama', jenis_kelamin = '$jenis', tempat_lahir = '$tempat', tanggal_lahir = '$tanggal', sekolah_asal_id = '$sekolah', alamat = '$alamat', nama_wali = '$wali', telp = '$telp', foto_name = '$DefaultId', foto_link = '$ServerURL' WHERE id = '$id'";
+    $result = mysqli_query($con, $query);
+
+    if($result){
+        file_put_contents($ImagePath,base64_decode($ImageData));
+        echo 'Berhasil mengupdate siswa.';
+    } 
+
+    else{
+        echo 'Gagal mengupdate siswa.';
     }
     
     mysqli_close($con);
